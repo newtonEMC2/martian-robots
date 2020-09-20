@@ -50,6 +50,7 @@ const dataTransform = (imput) => {
 
 /**
  * 
+ * @param {*} orientation 
  */
 const coordinateVectors = (orientation) => {
     try {
@@ -70,6 +71,11 @@ const coordinateVectors = (orientation) => {
     }
 }
 
+/**
+ * 
+ * @param {*} currentOrientation 
+ * @param {*} step 
+ */
 const robotTurns = (currentOrientation, step) => {
     const cardinalPoints = "NESW"
     try {
