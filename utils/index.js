@@ -1,9 +1,12 @@
 const fs = require('fs');
 
-const readFile = async function (path) {
+/**
+ * 
+ * @param {*} path 
+ */
+const readFile = async (path) => {
     try {
-        imputData = await fs.readFileSync(path, 'utf8')
-        return imputData
+        return await fs.readFileSync(path, 'utf8')
     } catch (e) {
         console.log('Error Accessing the imput file:', e.stack)
     }
@@ -13,7 +16,7 @@ const readFile = async function (path) {
  * 
  * @param {*} imput 
  */
-const writeFile = function (path, content) {
+const writeFile = (path, content) => {
     fs.writeFile(path, content, e => {
         if (e) {
             console.error(e)
@@ -27,7 +30,7 @@ const writeFile = function (path, content) {
  * 
  * @param {Array} imput 
  */
-const dataTransform = function (imput) {
+const dataTransform = (imput) => {
     imput = imput.split(/\r?\n/)
     const data = { instructions: [] }
     data.gridSize = imput.shift().split(" ")
@@ -48,7 +51,7 @@ const dataTransform = function (imput) {
 /**
  * 
  */
-const coordinateVectors = function (orientation) {
+const coordinateVectors = (orientation) => {
     try {
         switch (orientation) {
             case "N":
@@ -67,7 +70,7 @@ const coordinateVectors = function (orientation) {
     }
 }
 
-const robotTurns = function (currentOrientation, step) {
+const robotTurns = (currentOrientation, step) => {
     const cardinalPoints = "NESW"
     try {
         let indx = cardinalPoints.indexOf(currentOrientation)
