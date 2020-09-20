@@ -22,15 +22,18 @@ const Mars = function (width, height) {
 
     var module = function () { }
 
-    module.prototype.width = width > 50 ? 50 : width
-    module.prototype.height > 50 ? 50 : height
+    module.width = width > 50 ? 50 : width
+    module.height > 50 ? 50 : height
+    module.offLimits = []
 
-    module.prototype.getX = function () {
-        return width;
+    module.setoffLimits = function (cell) {
+        module.offLimits.push(cell)
     }
 
+    module.isOffLimits = function () { }
+
     return {
-        getX: module.prototype.getX
+        getX: module.getX
     };
 }
 
