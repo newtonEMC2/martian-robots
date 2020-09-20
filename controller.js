@@ -18,7 +18,6 @@ async function run() {
          * Transform data into {gridSize:..., instructions: [{{start: Array, steps: Array}...}...]}
          */
         const { instructions, gridSize } = dataTransform(imputData)
-        // console.log(instructions)
 
         /**
          * Create mars planet
@@ -39,7 +38,6 @@ async function run() {
                     const isOffLimit = mars.isOffLimit(nextPosition) //check if stepped out of boundaries
                     if (!isOffLimit) robot.execInstruction(step) //if in the planet, carry on
                     else {
-                        console.log('irrr')
                         robot.setLost()
                         mars.setoffLimits(nextPosition)
                         break
