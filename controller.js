@@ -6,6 +6,7 @@ const { readFile, writeFile, dataTransform } = require("./utils")
 async function run() {
     const robots = []
     let output = ""
+    let mars
     try {
 
         /**
@@ -22,18 +23,30 @@ async function run() {
         /**
          * Create mars planet
          */
-        const mars = Mars(gridSize[0], gridSize[1])
+        mars = Mars(gridSize[0], gridSize[1])
 
         /**
          * Make robots run in a row
          */
-        instructions.forEach(({ start, orientation, steps }) => {
+        instructions.forEach(({ start, orientation, steps }, i) => {
             const robot = new Robot(start, orientation)
-            // console.log(robot)
-            steps.forEach(step => {
-                robot.execInstruction(step)
-
-            })
+            if (mars.isOffLimit(start)) throw new Error(`robot ${i} never been in the planet`)
+            for (let j = 0; j < steps.length; j++) {
+                let step = steps[j]
+                if (step == 'F') {
+                    const nextPosition = robot.queryNextPosition(step) // next position to be for the robot
+                    if (mars.checkOffLimitList(nextPosition)) continue; // is going out boundary and already scent, ignore
+                    const isOffLimit = mars.isOffLimit(nextPosition) //check if stepped out of boundaries
+                    if (!isOffLimit) robot.execInstruction(step) //if in the planet, carry on
+                    else {
+                        console.log('irrr')
+                        robot.setLost()
+                        mars.setoffLimits(nextPosition)
+                        break
+                    }
+                }
+                else robot.execInstruction(step)
+            }
             robots.push(robot)
         })
 
