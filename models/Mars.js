@@ -28,4 +28,4 @@ const Mars = function (width, height) {
 }
 
 
-module.exports = Mars
+export default Mars

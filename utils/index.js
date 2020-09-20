@@ -1,4 +1,4 @@
-const fs = require('fs');
+import fs from 'fs'
 
 /**
  * 
@@ -88,4 +88,4 @@ const robotTurns = (currentOrientation, step) => {
 }
 
 
-module.exports = { readFile, writeFile, dataTransform, coordinateVectors, robotTurns }
+export { readFile, writeFile, dataTransform, coordinateVectors, robotTurns }

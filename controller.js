@@ -1,7 +1,7 @@
-const path = require("path")
-const Mars = require("./models/Mars")
-const Robot = require("./models/Robot")
-const { readFile, writeFile, dataTransform } = require("./utils")
+import path from "path"
+import Mars from "./models/Mars"
+import Robot from "./models/Robot"
+import { readFile, writeFile, dataTransform } from "./utils"
 
 async function run() {
     const robots = []
@@ -64,12 +64,11 @@ async function run() {
 
     } catch (e) {
         console.log('Error', e.stack);
-
     }
 }
 
 run()
 
-
+export default run
 
 

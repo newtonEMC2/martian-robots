@@ -1,4 +1,4 @@
-const { coordinateVectors, robotTurns } = require("../utils/index")
+import { coordinateVectors, robotTurns } from "../utils/index"
 
 const Robot = function (start, orientation) {
     this.orientation = orientation
@@ -29,4 +29,4 @@ Robot.prototype.execInstruction = function (step) {
     return this.currentPosition
 }
 
-module.exports = Robot
+export default Robot
