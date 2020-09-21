@@ -31,21 +31,41 @@ const writeFile = (path, content) => {
  * @param {Array} imput 
  */
 const dataTransform = (imput) => {
-    imput = imput.split(/\r?\n/)
-    const data = { instructions: [] }
-    data.gridSize = imput.shift().split(" ")
-    imput.forEach((chunk, i) => {
-        if (i % 2 !== 0) {
-            const obj = {}
-            obj.start = imput[i - 1].split(" ")
-            obj.orientation = obj.start.pop()
-            obj.start = obj.start.map(Number)
-            obj.steps = chunk.split("")
-            data.instructions.push(obj)
-        }
-    });
+    try {
+        imput = imput.split(/\r?\n/)
+        const data = { instructions: [] }
+        data.gridSize = imput.shift().split(" ")
+        imput.forEach((chunk, i) => {
+            if (i % 2 !== 0) {
+                const obj = {}
+                obj.start = imput[i - 1].split(" ")
+                obj.orientation = obj.start.pop()
+                obj.start = obj.start.map(Number)
+                obj.steps = chunk.split("")
+                data.instructions.push(obj)
+            }
+        });
+        // check data is fine
+        _checkImputData(data)
 
-    return data
+        return data
+
+    } catch (e) {
+        throw new Error(e)
+    }
+}
+
+const _checkImputData = (transformedData) => {
+    try {
+        const { instructions, gridSize } = transformedData
+        if (!instructions || !gridSize) throw new Error("imput format not correct");
+        if (gridSize.length !== 2) throw new Error("planet sizes format not correct");
+        if (instructions.length < 1) throw new Error("no robots instructions placed");
+        if (Object.keys(instructions[0]).length !== 3) throw new Error("you are missing either robot start, orientation, or steps");
+    } catch (e) {
+        throw new Error(e)
+    }
+
 }
 
 /**

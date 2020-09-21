@@ -12,9 +12,12 @@ LLFFFLFLFL
 
 No blank lines in between 
 
-Once your data is into, npm start, and output.txt file with the result
+Once your data is into, npm start. An output.txt file with the result
 will be generated in the root directory
 
 1 1 E
 3 3 N LOST
 2 3 S
+
+
+To test the app, npm test

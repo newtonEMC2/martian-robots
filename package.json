@@ -2,10 +2,10 @@
   "name": "robot-mars-algo",
   "version": "1.0.0",
   "description": "",
-  "main": "controller.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha  test -t 10000 --exit",
-    "start": "babel-node controller.js"
+    "start": "babel-node app.js"
   },
   "author": "",
   "license": "ISC",
