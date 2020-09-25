@@ -12,7 +12,7 @@ const workOutput = (imputData) => {
     try {
         let mars
         const robots = []
-        let output = ''
+        let output
 
         /**
          * Transform data into {gridSize:..., instructions: [{{start: Array, steps: Array}...}...]}
@@ -47,11 +47,8 @@ const workOutput = (imputData) => {
         /**
          * Generate content for output file
          */
-        robots.forEach(robot => {
-            output += robot.getCurrentStatus().trim() + "\r\n"
-        })
-
-        return output
+        output = robots.map(robot => robot.getCurrentStatus().trim() + "\r\n")
+        return output.join('')
     } catch (e) {
         throw new Error(e)
     }
